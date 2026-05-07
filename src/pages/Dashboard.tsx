@@ -86,7 +86,7 @@ export function Dashboard() {
   );
 
   if (!stats) return (
-    <div className="flex flex-col items-center justify-center h-[60vh] text-gray-500 space-y-4">
+    <div className="flex flex-col items-center justify-center h-[60vh] text-muted-foreground space-y-4">
       <CircularProgress size={48} strokeWidth={4} color="text-blue-600" />
       <p className="text-sm font-medium animate-pulse">Memuat dashboard...</p>
     </div>
@@ -94,7 +94,7 @@ export function Dashboard() {
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+      <h1 className="text-4xl font-bold tracking-tight text-foreground">Dashboard</h1>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <StatCard 

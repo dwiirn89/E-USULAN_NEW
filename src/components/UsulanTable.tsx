@@ -200,7 +200,7 @@ export function UsulanTable({ kategori, refreshTrigger }: UsulanTableProps) {
       case 'DITERIMA': return <Badge className="bg-green-100 text-green-800 border-green-200 hover:bg-green-200 flex items-center gap-1 w-fit"><CheckCircle className="w-3 h-3"/> Diterima</Badge>;
       case 'DITOLAK': return <Badge className="bg-rose-900 text-white border-rose-950 hover:bg-rose-800 flex items-center gap-1 w-fit"><XCircle className="w-3 h-3"/> Ditolak</Badge>;
       case 'DIKEMBALIKAN': return <Badge className="bg-orange-100 text-orange-800 border-orange-200 hover:bg-orange-200 flex items-center gap-1 w-fit"><AlertCircle className="w-3 h-3"/> Dikembalikan</Badge>;
-      default: return <Badge className="bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200 flex items-center gap-1 w-fit"><Clock className="w-3 h-3"/> Draft</Badge>;
+      default: return <Badge className="bg-muted text-muted-foreground border-border hover:bg-muted/80 flex items-center gap-1 w-fit"><Clock className="w-3 h-3"/> Draft</Badge>;
     }
   };
 
@@ -209,7 +209,7 @@ export function UsulanTable({ kategori, refreshTrigger }: UsulanTableProps) {
       case 'DITERIMA': return "hover:bg-green-100 bg-green-50";
       case 'DITOLAK': return "hover:bg-rose-100 bg-rose-50";
       case 'DIKEMBALIKAN': return "hover:bg-orange-100 bg-orange-50";
-      default: return "hover:bg-gray-100 bg-white";
+      default: return "hover:bg-muted/50 bg-background";
     }
   };
 
@@ -419,21 +419,21 @@ export function UsulanTable({ kategori, refreshTrigger }: UsulanTableProps) {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-4 text-xs text-gray-600 bg-gray-50/50 p-3 rounded-lg border border-gray-100">
-        <span className="font-semibold text-gray-700 flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground bg-muted/50 p-3 rounded-lg border border-border">
+        <span className="font-semibold text-foreground flex items-center gap-1.5">
           <AlertCircle className="w-4 h-4 text-blue-500" />
           Keterangan Warna Baris:
         </span>
         <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-green-100 border border-green-300"></div> Diterima</div>
         <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-rose-900 border border-rose-950"></div> Ditolak</div>
         <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-orange-100 border border-orange-300"></div> Dikembalikan</div>
-        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-white border border-gray-300"></div> Draft</div>
+        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-background border border-border"></div> Draft</div>
       </div>
 
-      <div className="border rounded-md overflow-hidden bg-white">
+      <div className="border rounded-md overflow-hidden bg-card">
         <div className="overflow-x-auto">
           <Table className="w-full">
-            <TableHeader className="bg-gray-50">
+            <TableHeader className="bg-muted">
               <TableRow>
                 <TableHead className="w-[40px] text-center whitespace-nowrap">
                   <input 
@@ -468,13 +468,13 @@ export function UsulanTable({ kategori, refreshTrigger }: UsulanTableProps) {
                 <ResizableHeader id="catatan_validasi" width={colWidths.catatan_validasi} onResize={handleResize}>Catatan Validasi</ResizableHeader>
                 <ResizableHeader id="validator" width={colWidths.validator} onResize={handleResize}>Validator</ResizableHeader>
                 <ResizableHeader id="tanggal_validasi" width={colWidths.tanggal_validasi} onResize={handleResize}>Tgl Validasi</ResizableHeader>
-                <TableHead className="text-right whitespace-nowrap sticky right-0 bg-gray-50 shadow-[-4px_0_10px_rgba(0,0,0,0.05)]">Aksi</TableHead>
+                <TableHead className="text-right whitespace-nowrap sticky right-0 bg-muted shadow-[-4px_0_10px_rgba(0,0,0,0.05)]">Aksi</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading ? (
                 <TableRow>
-                  <TableCell colSpan={26} className="text-center py-20 text-gray-500">
+                  <TableCell colSpan={26} className="text-center py-20 text-muted-foreground">
                     <div className="flex flex-col items-center justify-center space-y-4">
                       <CircularProgress size={48} strokeWidth={4} color="text-blue-600" />
                       <p className="text-sm font-medium animate-pulse">Memuat data...</p>
@@ -495,7 +495,7 @@ export function UsulanTable({ kategori, refreshTrigger }: UsulanTableProps) {
                 </TableRow>
               ) : data.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={26} className="text-center py-10 text-gray-500">
+                  <TableCell colSpan={26} className="text-center py-10 text-muted-foreground">
                     Tidak ada data ditemukan.
                   </TableCell>
                 </TableRow>
@@ -535,7 +535,7 @@ export function UsulanTable({ kategori, refreshTrigger }: UsulanTableProps) {
                     <TableCell style={getColStyle('catatan_validasi')} className="truncate" title={row.catatan_validasi}>{row.catatan_validasi || '-'}</TableCell>
                     <TableCell style={getColStyle('validator')} className="truncate" title={row.validator}>{row.validator || '-'}</TableCell>
                     <TableCell style={getColStyle('tanggal_validasi')} className="truncate" title={row.tanggal_validasi ? format(new Date(row.tanggal_validasi), 'dd MMM yyyy HH:mm') : '-'}>{row.tanggal_validasi ? format(new Date(row.tanggal_validasi), 'dd MMM yyyy HH:mm') : '-'}</TableCell>
-                    <TableCell className="text-right whitespace-nowrap sticky right-0 bg-white shadow-[-4px_0_10px_rgba(0,0,0,0.05)]">
+                    <TableCell className="text-right whitespace-nowrap sticky right-0 bg-background shadow-[-4px_0_10px_rgba(0,0,0,0.05)]">
                       <Button 
                         variant="ghost" 
                         size="sm"
